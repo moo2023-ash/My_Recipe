@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.app.mapper.RecipeMapper">
+
+	<insert id="insertRecipe" parameterType="RecipeRegister">
+		insert into recipes
+			(title, user_id, photo, created_at, likeCount,
+			ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, ingredient7, ingredient8, ingredient9, ingredient10,
+			amount1, amount2, amount3, amount4, amount5, amount6, amount7, amount8, amount9, amount10,
+			textarea1, textarea2, textarea3, textarea4, textarea5, textarea6, textarea7, textarea8, textarea9, textarea10)
+		Values
+			(#{title}, #{userId}, #{photo}, now(), #{likeCount}, 
+			#{ingredient1}, #{ingredient2}, #{ingredient3}, #{ingredient4}, #{ingredient5}, #{ingredient6}, #{ingredient7}, #{ingredient8}, #{ingredient9}, #{ingredient10},
+			#{amount1}, #{amount2}, #{amount3}, #{amount4}, #{amount5}, #{amount6}, #{amount7}, #{amount8}, #{amount9}, #{amount10},
+			#{textarea1}, #{textarea2}, #{textarea3}, #{textarea4}, #{textarea5}, #{textarea6}, #{textarea7}, #{textarea8}, #{textarea9}, #{textarea10})
+	</insert>
+	
+	
+	
+	
+	<select id="selectAll" resultType="RecipeRegister">
+		select * from recipes
+	</select>
+	
+	<resultMap id="joinMap" type="Recipe">
+		<id property="id" column="id" />
+		<result column="title" property="title"/>
+	    <result column="user_id" property="userId"/>
+	    <result column="created_at" property="createdAt"/>
+	    <result column="photo" property="photo"/>
+	    <result column="likeCount" property="likeCount"/>
+	 <collection property="ingredients" ofType="Ingredient" autoMapping="true"/>  
+	 <collection property="amounts" ofType="Amount" autoMapping="true"/>  
+	 <collection property="textarea" ofType="Textarea" autoMapping="true"/>
+	 </resultMap>
+	
+	<select id="selectLimited" resultType="Recipe">
+		select
+		id, title, user_id, photo, created_at, likeCount,
+		ingredient1,ingredient2,ingredient3,ingredient4,ingredient5,ingredient6,ingredient7,ingredient8,ingredient9,ingredient10,
+		amount1 ,amount2 ,amount3 ,amount4,amount5, amount6, amount7 ,amount8,amount9, amount10,
+		textarea1, textarea2, textarea3, textarea4, textarea5, textarea6, textarea7, textarea8, textarea9, textarea10
+		from recipes
+		where user_id = #{currentUserId}
+		LIMIT #{offset}, #{limit}
+	</select>
+	
+	<select id="count" resultType="long">
+		SELECT COUNT(title) FROM recipes
+		where user_id = #{userId}
+	</select>
+	
+	<resultMap id="joinedMap" type="Recipe">
+		<id property="id" column="id" />
+		<result column="title" property="title"/>
+	    <result column="user_id" property="userId"/>
+	    <result column="created_at" property="createdAt"/>
+	    <result column="photo" property="photo"/>
+	    <result column="likeCount" property="likeCount"/>
+	 <collection property="ingredients" ofType="Ingredient" autoMapping="true"/>  
+	 <collection property="amounts" ofType="Amount" autoMapping="true"/>  
+	 <collection property="textarea" ofType="Textarea" autoMapping="true"/>  
+	</resultMap>
+
+	<select id="selectById" resultMap="joinedMap">
+		select
+		id, title, user_id, photo, created_at, likeCount,
+		ingredient1,ingredient2,ingredient3,ingredient4,ingredient5,ingredient6,ingredient7,ingredient8,ingredient9,ingredient10,
+		amount1 ,amount2 ,amount3 ,amount4,amount5, amount6, amount7 ,amount8,amount9, amount10,
+		textarea1, textarea2, textarea3, textarea4, textarea5, textarea6, textarea7, textarea8, textarea9, textarea10
+		from recipes
+		where id = #{id}
+	</select>
+	
+	<select id="selectByUserId" resultType="RecipeRegister">
+		select *
+		from recipes
+		where user_id = #{userId}
+	</select>
+	
+	<select id="selectRegisterById" resultType="RecipeRegister">
+		select
+		id, title, user_id, photo, created_at, likeCount,
+		ingredient1,ingredient2,ingredient3,ingredient4,ingredient5,ingredient6,ingredient7,ingredient8,ingredient9,ingredient10,
+		amount1 ,amount2 ,amount3 ,amount4,amount5, amount6, amount7 ,amount8,amount9, amount10,
+		textarea1, textarea2, textarea3, textarea4, textarea5, textarea6, textarea7, textarea8, textarea9, textarea10
+		from recipes
+		where id = #{id};
+	</select>
+	
+	<delete id="delete">
+		delete from recipes
+		where id = #{id}
+	</delete>
+	
+	
+	
+	<delete id="deleteRecipeBytitle">
+		delete from recipes
+		where title = #{title}
+	</delete>
+	
+	
+	
+	<update id="update" parameterType="RecipeRegister">
+		update recipes 
+			set title =  #{title},  user_id = #{userId}, photo = #{photo}, likeCount = #{likeCount},
+			ingredient1 = #{ingredient1}, ingredient2 = #{ingredient2}, ingredient3 =#{ingredient3}, ingredient4 = #{ingredient4}, ingredient5 = #{ingredient5}, ingredient6 = #{ingredient6}, ingredient7 = #{ingredient7}, ingredient8 = #{ingredient8}, ingredient9 = #{ingredient9}, ingredient10 = #{ingredient10},
+			amount1 = #{amount1}, amount2 = #{amount2}, amount3 = #{amount3}, amount4 = #{amount4}, amount5 = #{amount5}, amount6 = #{amount6}, amount7 = #{amount7}, amount8 = #{amount8}, amount9 = #{amount9}, amount10 = #{amount10},
+			textarea1 = #{textarea1}, textarea2 = #{textarea2}, textarea3 = #{textarea3}, textarea4 = #{textarea4}, textarea5 = #{textarea5}, textarea6 = #{textarea6}, textarea7 = #{textarea7}, textarea8 = #{textarea8}, textarea9 = #{textarea9}, textarea10 = #{textarea10}
+		where id = #{id}
+	</update>
+	
+	<select id="searchRecipe" resultType="RecipeRegister">
+		select
+		id, title, user_id, photo, created_at, likeCount,
+		ingredient1,ingredient2,ingredient3,ingredient4,ingredient5,ingredient6,ingredient7,ingredient8,ingredient9,ingredient10,
+		amount1 ,amount2 ,amount3 ,amount4,amount5, amount6, amount7 ,amount8,amount9, amount10,
+		textarea1, textarea2, textarea3, textarea4, textarea5, textarea6, textarea7, textarea8, textarea9, textarea10
+		from recipes
+		where title like concat('%', #{keyword}, '%');
+	</select>
+	
+</mapper>

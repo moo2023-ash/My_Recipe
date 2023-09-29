@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<h1>登録画面</h1>
+		<form action="" method="post">
+		<p>id<input type="number" name="id" th:value="${user.id}" readonly></p>
+		<p>ユーザーId<input type="text" name="userId" th:value="${user.userId}" readonly></p>
+		
+		<p>ログインPass<input type="password" name="loginPass"></p>
+		<input type="submit">
+	</form>
+</body>
+</html>

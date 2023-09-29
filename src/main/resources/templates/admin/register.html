@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>登録フォーム</title>
+
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+	<div class="">
+		<!--		<nav class="">-->
+		<!--			<h1>登録フォーム</h1>-->
+		<!--			<span>いらっしゃい</span>-->
+		<!--			<span th:text="${session.userId}"></span>-->
+		<!--			<span>さん</span>-->
+		<!--			<p>-->
+		<!--				<a th:href="@{/logout}">ログアウト</a>-->
+		<!--				<a th:href="@{/recipe/home}">HOME</a>-->
+		<!--			</p>-->
+		<!--		</nav>-->
+
+		<main class="ingredients-contaier">
+			<a class="nav-home-a" th:href="@{/admin/home}">一覧へ戻る</a>
+			<div>
+				<form class="flex-around" method="post" enctype="multipart/form-data" th:object="${recipeRegister}">
+					<div>
+						<h3>（1）料理名</h3>
+						<input type="text" th:field="*{title}">
+						<h3>（2）画像アップロード</h3>
+							<p><input type="file" name="imageUpfile"></p>
+						<h3>（3）材料・調味料</h3>
+						<table id="ingredient-table">
+							<tr>
+								<td><input type="text" th:field="*{ingredient1}" placeholder="材料1"></td>
+								<td><input type="text" th:field="*{amount1}" placeholder="分量1"></td>
+							</tr>
+							<tr>
+								<td><input type="text" th:field="*{ingredient2}" placeholder="材料2"></td>
+								<td><input type="text" th:field="*{amount2}" placeholder="分量2"></td>
+							</tr>
+							<tr>
+								<td><input type="text" th:field="*{ingredient3}" placeholder="材料3"></td>
+								<td><input type="text" th:field="*{amount3}" placeholder="分量3"></td>
+							</tr>
+							<tr>
+								<td><input type="text" th:field="*{ingredient4}" placeholder="材料4"></td>
+								<td><input type="text" th:field="*{amount4}" placeholder="分量4"></td>
+							</tr>
+							<tr>
+								<td><input type="text" th:field="*{ingredient5}" placeholder="材料5"></td>
+								<td><input type="text" th:field="*{amount5}" placeholder="分量5"></td>
+							</tr>
+						
+							<tr class="display-none">
+								<td><input type="text" th:field="*{ingredient6}" placeholder="材料6"></td>
+								<td><input type="text" th:field="*{amount6}" placeholder="分量6"></td>
+							</tr>
+							<tr class="display-none">
+								<td><input type="text" th:field="*{ingredient7}" placeholder="材料7"></td>
+								<td><input type="text" th:field="*{amount7}" placeholder="分量7"></td>
+							</tr>
+							<tr class="display-none">
+								<td><input type="text" th:field="*{ingredient8}" placeholder="材料8"></td>
+								<td><input type="text" th:field="*{amount8}" placeholder="分量8"></td>
+							</tr>
+							<tr class="display-none">
+								<td><input type="text" th:field="*{ingredient9}" placeholder="材料9"></td>
+								<td><input type="text" th:field="*{amount9}" placeholder="分量9"></td>
+							<tr class="display-none">
+								<td><input type="text" th:field="*{ingredient10}" placeholder="材料10"></td>
+								<td><input type="text" th:field="*{amount10}" placeholder="分量10"></td>
+							</tr>
+						</table>
+						<button id="add-row">追加</button>
+						<!--					<button type="button" id="ingredient-add">材料・調味料の追加</button>-->
+					</div>
+					<div>
+						<h3>（4）つくり方</h3>
+						<div class="procces-container">
+							<div id="textarea-div">
+								<p><textarea th:field="*{textarea1}" id="" cols="50" placeholder="その1"></textarea></p>
+								<p><textarea th:field="*{textarea2}" id="" cols="50" placeholder="その2"></textarea></p>
+								<p><textarea th:field="*{textarea3}" id="" cols="50" placeholder="その3"></textarea></p>
+								<p><textarea th:field="*{textarea4}" id="" cols="50" placeholder="その4"></textarea></p>
+								<p><textarea th:field="*{textarea5}" id="" cols="50" placeholder="その5"></textarea></p>
+								<p ><textarea class="display-none-textarea" th:field="*{textarea6}" id="" cols="50" placeholder="その6"></textarea></p>
+								<p  class="display-none-textarea"><textarea th:field="*{textarea7}" id="" cols="50" placeholder="その7"></textarea></p>
+								<p  class="display-none-textarea"><textarea th:field="*{textarea8}" id="" cols="50" placeholder="その8"></textarea></p>
+								<p  class="display-none-textarea"><textarea th:field="*{textarea9}" id="" cols="50" placeholder="その9"></textarea></p>
+								<p  class="display-none-textarea"><textarea th:field="*{textarea10}" id="" cols="50" placeholder="その10"></textarea></p>
+							</div>
+							<button id="add-textarea">追加</button>
+							<!--						<button type="button" id="textarea-add">つくり方の追加</button>-->
+							<p><input type="submit" value="送信"></p>
+						</div>
+					</div>
+				</form>
+			</div>
+		</main>
+	</div>
+	<script src="/js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.app.mapper.AdminMapper">
+
+	<select id="loginByAdmin" parameterType="String" resultType="Admin">
+		select * from admin 
+		where admin_id = #{adminId}
+	</select> 
+	
+	<select id="selectAllUser"  resultType="User">
+		select * from users
+		where status != "delete"
+		order by created_at desc
+	</select> 
+	
+	<select id="selectUser"  resultType="User">
+		select * from users 
+		where id = #{id}
+	</select> 
+	
+	<update id="active" parameterType="User">
+		update users 
+		status = "act"
+		where id = #{id}
+	</update>
+	
+	<delete id="deleteUserById">
+		delete from users where id = #{id}
+	</delete>
+	
+	<update id="updateUser" parameterType="User">
+		update users 
+		set id = #{id}, user_id = #{userId}, login_pass = #{loginPass},
+		status = #{status}, created_at = now(), status = "act"
+		where id = #{id}
+	</update>
+	
+	<select id="countRecipes" resultType="long">
+		select count(title) from recipes where user_id = #{userId}
+	</select>
+	
+</mapper>

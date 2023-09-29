@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.app.mapper.RegisterMapper">
+
+	<insert id="registerUser" parameterType="User">
+		insert into users (user_id, login_pass, created_at, status)
+		values(#{userId}, #{hashedLoginPass}, now(), "act")
+	</insert> 
+
+</mapper>

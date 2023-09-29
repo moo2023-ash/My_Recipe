@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>材料一覧メール送信フォーム</title>
+</head>
+<body>
+    <div th:if="${not #strings.isEmpty(msg)}">
+        <p th:text="${msg}"></p>
+    </div>
+    <h1>材料一覧メール送信先入力</h1>
+    <form action="" method="post">
+        <p>
+            お名前:<br> <input type="text" name="name" required>
+        </p>
+        <p>
+            メール:<br> <input type="email" name="email" required>
+        </p>
+        <p>
+            件名:<br> <input type="text" name="title" required>
+        </p>
+        <p>
+            内容:<br>
+            <textarea name="message" cols="30" rows="10" required></textarea>
+        </p>
+        <input type="submit" value="送信">
+    </form>
+    <a class="nav-home-a" th:href="@{/recipe/home}">一覧へ戻る</a>
+</body>
+</html>

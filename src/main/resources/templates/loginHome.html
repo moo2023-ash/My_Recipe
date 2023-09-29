@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8" />
+<title>Document</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+	<header>
+		<div class="header-images flex-start">
+			<div class="header-images">
+				<img src="/images/letscooking.jpg" alt="" width="50" height="65">
+				<img src="/images/hamburger.jpg" alt="" width="75" height="65">
+			</div>
+		</div>
+	</header>
+	<div class="flex-around ">
+		<nav class="nav-home-left">
+			<div class="nav-home-div"></div>
+			<ul class="nav-rogin-home-link">
+				<li class="padding-bottom-10 list-style-type-none text-align-center"><a
+					href="" class="nav-home-a nav-rogin-a opacity ">ログアウト</a></li>
+				<li class="padding-bottom-10 list-style-type-none text-align-center"><a
+					class="nav-home-a nav-rogin-a opacity" href="">レシピ登録</a></li>
+				<li class="padding-bottom-10 list-style-type-none text-align-center"><a
+					class="nav-home-a nav-rogin-a opacity" href="">お問い合わせ</a></li>
+			</ul>
+			<th:block th:if="${statusMessage}">
+				<p class="statusMessage" th:text="${statusMessage}"></p>
+			</th:block>
+			<div
+				class="border-solid border-radius-5 width-80 margin-0-auto padding-5-5">
+				<h2 class="text-align-center margin-bottom-5 boder-bottom-fff">-
+					ログイン -</h2>
+				<form action="" method="post" th:object="${user}"
+					class="text-align-center">
+					<span th:errors="*{userId}"></span>
+					<p class="font-size-2rem  border-none">ユーザーid :</p>
+					<p>
+						<input type="text" th:field="*{userId}">
+					</p>
+					<span th:errors="*{loginPass}"></span>
+					<p class="font-size-2rem  border-none margin-bottom-5">ログインPass
+						:</p>
+					<p>
+						<input type="password" th:field="*{loginPass}">
+					</p>
+					<input type="submit" class="font-size-2rem border-none">
+				</form>
+				<p class="text-align-center font-size-1-5rem margin-top-5">
+					登録がまだの方は <a th:href="@{register}" class="font-size-2rem">コチラ</a>
+				</p>
+			</div>
+		</nav>
+		<main class="main-home">
+			<div class="">
+				<div class="recipes-list">
+					<h2 class="padding-bottom-5"><a th:href="@{/loginAdmin}">管理人</a>のレシピ</h2>
+					<ul>
+						<li th:each="admin : ${admins}"><a
+							th:href="@{/detailRogin/{id}(id=${admin.id})}"
+							class="font-size-2-5rem"> [[${admin.title}]] </a> <a href=""
+							class="opacity font-size-0-5rem"> 削除 </a></li>
+					</ul>
+				</div>
+			</div>
+		</main>
+		<nav class="nav-home-right text-align-center opacity-3">
+			<h3 class="text-align-center padding-bottom-10">みんなのレシピ</h3>
+			
+			
+			<form action="/searchRcipes">
+				<input type="text" placeholder="キーワードを入力" class="text-align-center"
+					style="text-align: center;" name="keyword" disabled> 
+				<input type="submit" value="探す" disabled>
+			</form>
+			<ul th:if="${selectAllrecipes}" th:each="recipe : ${selectAllrecipes}" class="nav-home-right-ul">
+				<li class="nav-home-right-li"><a
+					href=""
+					class="nav-home-righ-a font-size-1-5rem">[[${recipe.title}]]</a></li>
+			</ul>
+			
+			<ul th:if="${searchRcipes}" th:each="recipe : ${searchRcipes}" class="nav-home-right-ul">
+				<li class="nav-home-right-li"><a
+					href=""
+					class="nav-home-righ-a font-size-1-5rem">[[${recipe.title}]]</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<!-- 2 ページ以上の場合、ページネーションを表示:start -->
+
+	<div th:if="${totalPages >= 2}">
+
+		<ul class="pagination">
+			<!-- 前のページへ -->
+			<th:block th:switch="${page}">
+				<li th:case="1" class="page-item disabled"><span
+					class="page-link">&laquo;</span></li>
+				<li th:case="*" class="page-item"><a class="page-link"
+					th:href="@{/(page=${page - 1})}">&laquo;</a></li>
+			</th:block>
+			<!-- ページ番号 -->
+			<th:block th:each="index : ${#numbers.sequence(1, totalPages)}">
+				<th:block th:switch="${index}">
+					<li th:case="${page}" class="page-item active"><span
+						class="page-link" th:text="${index}"></span></li>
+					<li th:case="*" class="page-item"><a class="page-link"
+						th:href="@{/(page=${index})}" th:text="${index}"></a></li>
+				</th:block>
+			</th:block>
+			<!-- 次のページへ -->
+			<th:block th:switch="${page}">
+				<li th:case="${totalPages}" class="page-item disabled"><span
+					class="page-link">&raquo;</span></li>
+				<li th:case="*" class="page-item"><a class="page-link"
+					th:href="@{/(page=${page + 1})}">&raquo;</a></li>
+			</th:block>
+		</ul>
+
+	</div>
+	<!-- 2 ページ以上の場合、ページネーションを表示:end -->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+	<script src="/js/script.js"></script>
+</body>
+
+</html>
