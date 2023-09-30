@@ -35,6 +35,15 @@
 						th:href="@{/sendMail/ingredient/{id}(id=${recipe.id})}">材料をメールで送信</a>
 					</li>
 				</ul>
+				<div>
+
+					<a th:each="likeId : ${recipeRegister}" th:href="@{/detailRogin2/{id}(id=${likeId.id})}">いいね:</a>
+
+				<p th:each="like : ${recipeRegister}">
+				<span
+						th:text="${like.likeCount != null ? like.likeCount : 0}"></span>
+				</p>
+			</div>
 				<th:block th:if="${statusMessage}">
 					<p class="statusMessage" th:text="${statusMessage}"></p>
 				</th:block>

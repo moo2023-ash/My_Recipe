@@ -48,7 +48,7 @@
 						<span class="title-name">レシピ</span>
 					</div>
 					<ul>
-						<li th:each="image : ${image}" class="">
+						<li th:each="recipe : ${recipes}" class="">
 							<a
 							th:href="@{/recipe/detail/{id}(id=${recipe.id})}" class="font-size-2-5rem ">[[${recipe.title}]]
 							</a>

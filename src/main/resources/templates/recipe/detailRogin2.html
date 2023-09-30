@@ -8,9 +8,9 @@
 </head>
 
 <body>
-	<header>		
+	<header>
 		<div class="header-images flex-start">
-			<div class="header-images">	
+			<div class="header-images">
 				<img src="/images/letscooking.jpg" alt="" width="50" height="65">
 				<img src="/images/hamburger.jpg" alt="" width="75" height="65">
 			</div>
@@ -19,9 +19,9 @@
 	<div class="flex-around">
 		<nav class="nav-detail-left">
 			<div class="nav-home-div text-align-center">
-<!--				<div class="user-title-container">-->
-<!--					<h1 th:text="${session.userId}" class="user-name"></h1>-->
-<!--				</div>-->
+				<!--				<div class="user-title-container">-->
+				<!--					<h1 th:text="${session.userId}" class="user-name"></h1>-->
+				<!--				</div>-->
 				<ul class="nav-home-link-ul nav-RoginHome-link">
 					<li class="padding-bottom-10"><a class="nav-home-a" th:href="@{/recipe/home}">Topへ戻る</a></li>
 					<li class="nav-home-li nav-rogin-a padding-bottom-10"><a class="nav-home-a"
@@ -30,7 +30,8 @@
 						<a href="" class="nav-home-a opacity">更新 </a>
 					</li>
 					<li th:each="recipe : ${recipesDetail}" class="">
-						<a class="nav-home-a nav-rogin-a" href="@{/sendMail/ingredient/{id}(id=${navId.id})}">材料をメールで送信</a>
+						<a class="nav-home-a nav-rogin-a"
+							href="@{/sendMail/ingredient/{id}(id=${navId.id})}">材料をメールで送信</a>
 					</li>
 				</ul>
 				<th:block th:if="${statusMessage}">
@@ -38,17 +39,16 @@
 				</th:block>
 			</div>
 			<div>
-<!-- 				<form action="/like" th:each="likeId : ${recipesDetail}"> -->
-<!-- 					<input type="hidden" name="id" value="${likeId.id}"> -->
-					<a th:each="likeId : ${recipeRegister}" th:href="@{/detailRogin2/{id}(id=${likeId.id})}">いいね:</a>
-<!-- 				</form> -->
+				<!-- 				<form action="/like" th:each="likeId : ${recipesDetail}"> -->
+				<!-- 					<input type="hidden" name="id" value="${likeId.id}"> -->
+				<a th:each="likeId : ${recipeRegister}" th:href="@{/detailRogin2/{id}(id=${likeId.id})}">いいね:</a>
+				<!-- 				</form> -->
 				<p th:each="like : ${recipeRegister}">
-				<span
-						th:text="${like.likeCount != null ? like.likeCount : 0}"></span>
+					<span th:text="${like.likeCount != null ? like.likeCount : 0}"></span>
 				</p>
 			</div>
 		</nav>
-		
+
 		<main class="main-detail width-80">
 			<section>
 				<div class="">
@@ -65,8 +65,8 @@
 
 			<section class="flex-around">
 				<section class="ingredients-amounts-section">
-					<img th:src="@{/uploads/{img}(img=${recipeRegister.photo})}" 
-					alt="${recipe.photo}" width="300" height="300">
+					<img th:src="@{/uploads/{img}(img=${recipeRegister.photo})}" alt="${recipe.photo}" width="300"
+						height="300">
 					<!-- 				<section class="ingredients-amounts-section" th:each="recipe : ${recipesDetail}"> -->
 					<!--  						<img th:src="@{/uploads/{img}(img=${recipe.photo})}" alt="${recipe.photo}" width="400" height="400"> -->
 
@@ -161,24 +161,26 @@
 					</div>
 				</section>
 			</section>
+
+
+			<section class="process-detail">
+				<div class="process-detail-container">
+					<h3>つくり方</h3>
+					<div class="ingredients-detail-container">
+						<div class="flex-between">
+							<ol th:each="detailItem : ${recipesDetail}" th:if="${detailItem.textarea}">
+								<li th:each="i : ${#numbers.sequence(1, 10)}"
+									th:if="${detailItem.textarea[0]['textarea' + i] != null and detailItem.textarea[0]['textarea' + i] != ''}">
+									<span th:text="${detailItem.textarea[0]['textarea' + i]}"></span>
+								</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</section>
 		</main>
 	</div>
-	
-	<section class="process-detail">
-		<div class="process-detail-container">
-			<h3>つくり方</h3>
-			<div class="ingredients-detail-container">
-				<div class="flex-between">
-					<ol th:each="detailItem : ${recipesDetail}" th:if="${detailItem.textarea}">
-						<li th:each="i : ${#numbers.sequence(1, 10)}"
-							th:if="${detailItem.textarea[0]['textarea' + i] != null and detailItem.textarea[0]['textarea' + i] != ''}">
-							<span th:text="${detailItem.textarea[0]['textarea' + i]}"></span>
-						</li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</section>
 	<script src="/js/script.js"></script>
 </body>
+
 </html>

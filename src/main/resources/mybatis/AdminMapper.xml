@@ -10,7 +10,7 @@
 	
 	<select id="selectAllUser"  resultType="User">
 		select * from users
-		where status != "delete"
+		where status != "del"
 		order by created_at desc
 	</select> 
 	
@@ -26,8 +26,19 @@
 	</update>
 	
 	<delete id="deleteUserById">
-		delete from users where id = #{id}
+		delete from users 
+		where id = #{id}
 	</delete>
+	
+	<update id="softDeleteUserById">
+		update users set status = "del"	
+		where id = #{id}
+	</update>
+	
+	<update id="unSoftDeleteUserByuserId">
+		update users set status = "act"	
+		where user_id = #{userId}
+	</update>
 	
 	<update id="updateUser" parameterType="User">
 		update users 

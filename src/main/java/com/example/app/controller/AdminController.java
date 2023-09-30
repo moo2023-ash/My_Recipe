@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -60,13 +61,26 @@ public class AdminController {
 		return "admin/home";
 	}
 	
-	@GetMapping("/deleteUser/{id}")
+//	@GetMapping("/deleteUser/{id}")
+//	public String deleteUser (
+//			@PathVariable("id") int id) {
+//		adminMapper.deleteUserById(id);
+//		return "redirect:/admin/home";
+//	}
+	
+	@GetMapping("/softDeleteUserById/{id}")
 	public String deleteUser (
 			@PathVariable("id") int id) {
-		adminMapper.deleteUserById(id);
+		adminMapper.softDeleteUserById(id);
 		return "redirect:/admin/home";
 	}
 	
+	@GetMapping("/unSoftDeleteUserByuserId")
+	public String unSoftDeleteUserByuserId (
+			@RequestParam("userId") String userId) throws Exception {
+		adminMapper.unSoftDeleteUserByuserId(userId);
+		return "redirect:/admin/home";
+	}
 
 	
 	@GetMapping("/selectByUserId/{userId}")
@@ -77,29 +91,33 @@ public class AdminController {
 		return "admin/recipeList";
 	}
 	
-	
-	
-	
-	
-	@GetMapping("/deleteRecipeBytitle/{title}")
-	public String deleteUserRecipe (
-			@PathVariable("title") String title) throws Exception {
-		recipeMapper.deleteRecipeBytitle(title);
-		return "redirect:/admin/home";
-	}
-	
+//	@GetMapping("/deleteRecipeBytitle/{title}")
+//	public String deleteUserRecipe (
+//			@PathVariable("title") String title) throws Exception {
+//		recipeMapper.deleteRecipeBytitle(title);
+//		return "redirect:/admin/home";
+//	}
+//	
 	
 	@GetMapping("/showDetailAdmin/{id}")
 	public String showDetailAdmin(
 			@PathVariable("id") int id, 
 			Model model, 
-			HttpSession session) {
+			HttpSession session) throws Exception {
 		
 		RecipeRegister recipeRegister = recipeMapper.selectRegisterById(id);
+		int currentLikeCount = recipeRegister.getLikeCount();
+		int newLikeCount = currentLikeCount + 1;
+		recipeRegister.setLikeCount(newLikeCount);
+		recipeMapper.update(recipeRegister);
+		model.addAttribute("recipeRegister", recipeRegister);
+
+		
+	
 		model.addAttribute("image", recipeRegister);
 		List<Recipe> recipesDetail = recipeService.selectByIdByService(id);
 		model.addAttribute("recipesDetail", recipesDetail);
-		System.out.println(recipesDetail);
+
 		return "admin/detail";
 	}
 	

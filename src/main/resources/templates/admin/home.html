@@ -36,6 +36,10 @@
 						<a class="nav-home-a" th:href="@{/sendMail/answer}">お問い合わせ</a>
 					</li>
 				</ul>
+				<form action="/admin/unSoftDeleteUserByuserId">
+					<input type="text" name="userId" placeholder="誰を？">
+					<input type="submit" value="ユーザー復活の儀">
+				</form>
 				<th:block th:if="${statusMessage}">
 					<p class="statusMessage" th:text="${statusMessage}"></p>
 				</th:block>
@@ -58,7 +62,7 @@
 							th:text="${user.createdAt}"></span> <a
 							th:href="@{/admin/selectByUserId/{userId}(userId=${user.userId})}"
 							class="font-size-2-5rem">[[${user.userId}]]</a> <a
-							th:href="@{/admin/deleteUser/{id}(id=${user.id})}"
+							th:href="@{/admin/softDeleteUserById/{id}(id=${user.id})}"
 							class="font-size-0-5rem">削除 </a> <a
 							th:href="@{/admin/updateUser/{id}(id=${user.id})}"
 							class="font-size-0-5rem">Pass編集 </a></li>

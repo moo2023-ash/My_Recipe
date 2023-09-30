@@ -14,6 +14,9 @@ public interface AdminMapper {
 	List<User> selectAllUser();
 	User selectUser(int id);
 	void deleteUserById(int id);
+	void softDeleteUserById(int id);
+	void unSoftDeleteUserByuserId(String userId);
 	void updateUser(int id, String userId, String loginPass);
 	long countRecipes(String userId);
+	
 }
