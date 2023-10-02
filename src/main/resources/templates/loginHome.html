@@ -54,17 +54,18 @@
 					<input type="submit" class="font-size-2rem border-none">
 				</form>
 				<p class="text-align-center font-size-1-5rem margin-top-5">
-					登録がまだの方は <a th:href="@{register}" class="font-size-2rem">コチラ</a>
+					新規登録は <a th:href="@{register}" class="font-size-1-5rem">コチラ</a>
 				</p>
-				<p>※「管理操作画面」は「管理人」よりログイン！</p>
+				<p class="text-align-center margin-top-5">※「管理操作画面」は<br>「管理人」よりログイン！</p>
 			</div>
 		</nav>
 		<main class="main-home">
 			<div class="">
-				<div class="recipes-list">
+				<div class="recipes-list margin-0-auto">
 					<h2 class="padding-bottom-5"><a th:href="@{/loginAdmin}">管理人</a>のレシピ</h2>
 					<ul>
-						<li th:each="admin : ${admins}"><a
+						<li th:each="admin : ${admins}"><span>登録日：</span><span
+							th:text="${admin.createdAt}"></span><a
 							th:href="@{/detailRogin/{id}(id=${admin.id})}"
 							class="font-size-2-5rem"> [[${admin.title}]] </a> <a href=""
 							class="opacity font-size-0-5rem"> 削除 </a></li>
@@ -82,7 +83,8 @@
 				<input type="submit" value="探す" disabled>
 			</form>
 			<ul th:if="${selectAllrecipes}" th:each="recipe : ${selectAllrecipes}" class="nav-home-right-ul">
-				<li class="nav-home-right-li"><a
+				<li class="nav-home-right-li"><span>登録日：</span><span
+							th:text="${recipe.createdAt}"></span><a
 					href=""
 					class="nav-home-righ-a font-size-1-5rem">[[${recipe.title}]]</a></li>
 			</ul>

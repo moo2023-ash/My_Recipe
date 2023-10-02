@@ -19,8 +19,8 @@
 	<!-- 	<div class=" parent-container"> -->
 	<div class="flex-around">
 		<nav class="nav-detail-left">
-			<div class="nav-home-div text-align-center">
-				<ul class="nav-home-link-ul nav-RoginHome-link">
+			<div class="nav-home-div text-align-center nav-rogin-home-link">
+				<ul class="nav-home-link-ul nav-rogin-Home-link">
 					<li class="padding-bottom-10"><a class="nav-home-a"
 						th:href="@{/}">Topへ戻る</a></li>
 					<li class="nav-home-li nav-rogin-a padding-bottom-10"><a
@@ -29,13 +29,12 @@
 						<a href="" class="nav-home-a opacity">更新 </a>
 					</li>
 					<li th:each="recipe : ${recipesDetail}" class=""><a
-						class="nav-home-a nav-rogin-a opacity" href="">材料をメールで送信</a></li>
+						class="nav-home-a nav-rogin-a opacity" href=""></a></li>
 				</ul>
 				<th:block th:if="${statusMessage}">
 					<p class="statusMessage" th:text="${statusMessage}"></p>
 				</th:block>
 			</div>
-			
 		</nav>
 
 		<main class="main-detail">
@@ -56,7 +55,7 @@
 				<section class="ingredients-amounts-section"
 					th:each="recipe : ${recipesDetail}">
 					<img th:src="@{/uploads/{img}(img=${recipe.photo})}"
-						alt="${recipe.photo}" width="300" height="300">
+						alt="${recipe.photo}" width="90%" height="">
 					<!-- 				<section class="ingredients-amounts-section" th:each="recipe : ${recipesDetail}"> -->
 					<!--  						<img th:src="@{/uploads/{img}(img=${recipe.photo})}" alt="${recipe.photo}" width="400" height="400"> -->
 

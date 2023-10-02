@@ -12,16 +12,16 @@
 <body>
 	<header>		
 		<div class="header-images flex-start">
-			<h1>管理人操作画面</h1>
+			<span >管理人:</span> 
+			<span th:text="${session.adminId}"	class=""></span>
 		</div>
-			<span th:text="${session.adminId}" class="user-name"></span>
 	</header>
 	<div class="flex-around ">
 		<nav class="nav-home-left">
 			<div class="nav-home-div">
 				
 				<ul class="nav-home-link">
-					<li class="padding-bottom-10"><a class="nav-home-a"
+					<li class="padding-bottom-10  text-align-center"><a class="nav-home-a"
 						th:href="@{/admin/home}">Topへ戻る</a></li>
 					<li class="nav-home-li padding-bottom-10 list-style-type-none text-align-center">
 						<a class="nav-home-a" th:href="@{/logout}">ログアウト</a>
@@ -42,7 +42,7 @@
 		<main class="main-home">
 			<div class="">
 				<div class="recipes-list">
-					<div class="text-align-center padding-bottom-5">
+					<div class="padding-bottom-5">
 						<span th:text="${userId}" class="user-name"></span>
 						さんの
 						<span class="title-name">レシピ一覧</span>

@@ -48,7 +48,8 @@
 						<span class="title-name">レシピ</span>
 					</div>
 					<ul>
-						<li th:each="recipe : ${recipes}" class="">
+						<li th:each="recipe : ${recipes}" class=""><span>登録日：</span><span
+							th:text="${recipe.createdAt}"></span>
 							<a
 							th:href="@{/recipe/detail/{id}(id=${recipe.id})}" class="font-size-2-5rem ">[[${recipe.title}]]
 							</a>
@@ -61,7 +62,7 @@
 				</div>
 			</div>
 		</main>
-		<nav class="nav-home-right">
+		<nav class="nav-home-right text-align-center">
 			<h3 class="text-align-center padding-bottom-10">みんなのレシピ</h3>
 			
 			<form action="/searchRcipes">
@@ -71,14 +72,17 @@
 			</form>
 			
 			<ul th:if="${selectAllrecipes}" th:each="recipe : ${selectAllrecipes}" class="nav-home-right-ul">
-				<li class="nav-home-right-li"><a
+				<li class="nav-home-right-li"><span>登録日：</span>
+				<span th:text="${recipe.createdAt}"></span><a
 					th:href="@{/detailRogin2/{id}(id=${recipe.id})}"
 					class="nav-home-righ-a font-size-1-5rem">[[${recipe.title}]]</a></li>
 			</ul>
 			
 			<ul th:if="${searchRcipes}" th:each="recipe : ${searchRcipes}" class="nav-home-right-ul">
-				<li class="nav-home-right-li"><a
-					th:href="@{/detailRogin2/{id}(id=${recipe.id})}"
+				<li class="nav-home-right-li">
+				<span>登録日：</span>
+				<span th:text="${recipe.createdAt}"></span>
+				<a th:href="@{/detailRogin2/{id}(id=${recipe.id})}"
 					class="nav-home-righ-a font-size-1-5rem">[[${recipe.title}]]</a></li>
 			</ul>
 			

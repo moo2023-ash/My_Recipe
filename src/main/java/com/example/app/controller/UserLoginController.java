@@ -128,6 +128,24 @@ public class UserLoginController {
 			HttpSession session) throws Exception {
 		
 		RecipeRegister recipeRegister = recipeMapper.selectRegisterById(id);
+//		int currentLikeCount = recipeRegister.getLikeCount();
+//		int newLikeCount = currentLikeCount + 1;
+//		recipeRegister.setLikeCount(newLikeCount);
+//		recipeMapper.update(recipeRegister);
+		model.addAttribute("recipeRegister", recipeRegister);
+		
+		List<Recipe> recipesDetail = recipeService.selectByIdByService(id);
+		model.addAttribute("recipesDetail", recipesDetail);
+		return "/recipe/detailRogin2";
+	}
+	
+	@GetMapping("/like/{id}")
+	public String likeCount(
+			@PathVariable("id") int id, 
+			Model model, 
+			HttpSession session) throws Exception {
+		
+		RecipeRegister recipeRegister = recipeMapper.selectRegisterById(id);
 		int currentLikeCount = recipeRegister.getLikeCount();
 		int newLikeCount = currentLikeCount + 1;
 		recipeRegister.setLikeCount(newLikeCount);
@@ -136,6 +154,7 @@ public class UserLoginController {
 		
 		List<Recipe> recipesDetail = recipeService.selectByIdByService(id);
 		model.addAttribute("recipesDetail", recipesDetail);
+//		return "redirect:/recipe/home";
 		return "/recipe/detailRogin2";
 	}
 	

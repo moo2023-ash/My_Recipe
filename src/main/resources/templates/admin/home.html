@@ -12,16 +12,16 @@
 <body>
 	<header>
 		<div class="header-images flex-start">
-			<h1>管理人操作画面</h1>
+			<span >管理人:</span> 
+			<span th:text="${session.adminId}"	class=""></span>
 		</div>
-		<span th:text="${session.adminId}" class="user-name"></span>
 	</header>
 	<div class="flex-around ">
 		<nav class="nav-home-left">
 			<div class="nav-home-div">
 
 				<ul class="nav-home-link">
-					<li class="padding-bottom-10"><a class="nav-home-a"
+					<li class="padding-bottom-10  text-align-center"><a class="nav-home-a"
 						th:href="@{/admin/home}">Topへ戻る</a></li>
 					<li
 						class="nav-home-li padding-bottom-10 list-style-type-none text-align-center">

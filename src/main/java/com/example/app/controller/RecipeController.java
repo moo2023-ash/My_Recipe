@@ -74,7 +74,7 @@ public class RecipeController {
 		RecipeRegister recipeRegister = new RecipeRegister();
 		
 		model.addAttribute("recipeRegister", recipeRegister);
-		return "recipe/register";
+		return "register";
 	}
 
 	@PostMapping("/register")
@@ -146,5 +146,23 @@ public class RecipeController {
 		recipeService.updateRecipe(recipeRegister, imageUpfile);
 		rs.addFlashAttribute("statusMessage", "レシピを更新しました。");
 		return "redirect:/recipe/home";
+	}
+	
+	@GetMapping("/detailRogin2/{id}")
+	public String showDetail2(
+			@PathVariable("id") int id, 
+			Model model, 
+			HttpSession session) throws Exception {
+		
+		RecipeRegister recipeRegister = recipeMapper.selectRegisterById(id);
+		int currentLikeCount = recipeRegister.getLikeCount();
+		int newLikeCount = currentLikeCount + 1;
+		recipeRegister.setLikeCount(newLikeCount);
+		recipeMapper.update(recipeRegister);
+		model.addAttribute("recipeRegister", recipeRegister);
+		
+		List<Recipe> recipesDetail = recipeService.selectByIdByService(id);
+		model.addAttribute("recipesDetail", recipesDetail);
+		return "/recipe/detailRogin2";
 	}
 }

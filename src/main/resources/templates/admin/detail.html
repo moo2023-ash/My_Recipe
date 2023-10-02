@@ -10,9 +10,9 @@
 <body>
 	<header>
 		<div class="header-images flex-start">
-			<h1>管理人操作画面</h1>
+			<span >管理人:</span> 
+			<span th:text="${session.adminId}"	class=""></span>
 		</div>
-		<span th:text="${session.adminId}" class="user-name"></span>
 	</header>
 	<div class="flex-around">
 		<nav class="nav-detail-left">
@@ -32,12 +32,12 @@
 						class="nav-home-a">更新</a>
 					</li>
 					<li th:each="recipe : ${recipesDetail}"><a class="nav-home-a"
-						th:href="@{/sendMail/ingredient/{id}(id=${recipe.id})}">材料をメールで送信</a>
+						th:href="@{/sendMail/ingredient/{id}(id=${recipe.id})}">材料Mail送信</a>
 					</li>
 				</ul>
-				<div>
+				<div class="like-count">
 
-					<a th:each="likeId : ${recipeRegister}" th:href="@{/detailRogin2/{id}(id=${likeId.id})}">いいね:</a>
+					<a th:each="likeId : ${recipeRegister}" th:href="@{/admin/detailRogin2/{id}(id=${likeId.id})}">いいね:</a>
 
 				<p th:each="like : ${recipeRegister}">
 				<span
@@ -47,8 +47,6 @@
 				<th:block th:if="${statusMessage}">
 					<p class="statusMessage" th:text="${statusMessage}"></p>
 				</th:block>
-
-
 			</div>
 		</nav>
 
@@ -69,7 +67,7 @@
 				<section class="ingredients-amounts-section"
 					th:each="recipe : ${recipesDetail}">
 					<img th:src="@{/uploads/{img}(img=${recipe.photo})}"
-						alt="${recipe.photo}" width="300" height="300">
+						alt="${recipe.photo}" width="90%" height="">
 
 				</section>
 

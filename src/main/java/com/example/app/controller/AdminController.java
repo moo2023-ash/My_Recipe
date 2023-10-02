@@ -239,4 +239,22 @@ public class AdminController {
 		
 		return "redirect:/admin/home";
 	}
+	
+	@GetMapping("/detailRogin2/{id}")
+	public String showDetail2(
+			@PathVariable("id") int id, 
+			Model model, 
+			HttpSession session) throws Exception {
+		
+		RecipeRegister recipeRegister = recipeMapper.selectRegisterById(id);
+		int currentLikeCount = recipeRegister.getLikeCount();
+		int newLikeCount = currentLikeCount + 1;
+		recipeRegister.setLikeCount(newLikeCount);
+		recipeMapper.update(recipeRegister);
+		model.addAttribute("recipeRegister", recipeRegister);
+		
+		List<Recipe> recipesDetail = recipeService.selectByIdByService(id);
+		model.addAttribute("recipesDetail", recipesDetail);
+		return "admin/detail";
+	}
 }

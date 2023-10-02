@@ -34,14 +34,12 @@
 						class="nav-home-a">更新</a>
 					</li>
 					<li th:each="recipe : ${recipesDetail}"><a class="nav-home-a"
-						th:href="@{/sendMail/ingredient/{id}(id=${recipe.id})}">材料をメールで送信</a>
+						th:href="@{/sendMail/ingredient/{id}(id=${recipe.id})}">材料Mail送信</a>
 					</li>
 				</ul>
 				<th:block th:if="${statusMessage}">
 					<p class="statusMessage" th:text="${statusMessage}"></p>
 				</th:block>
-				
-				
 			</div>
 		</nav>
 
@@ -62,7 +60,7 @@
 				<section class="ingredients-amounts-section"
 					th:each="recipe : ${recipesDetail}">
 					<img th:src="@{/uploads/{img}(img=${recipe.photo})}"
-						alt="${recipe.photo}" width="300" height="300">
+						alt="${recipe.photo}" width="90%" height="">
 					<!-- 				<section class="ingredients-amounts-section" th:each="recipe : ${recipesDetail}"> -->
 					<!--  						<img th:src="@{/uploads/{img}(img=${recipe.photo})}" alt="${recipe.photo}" width="400" height="400"> -->
 
