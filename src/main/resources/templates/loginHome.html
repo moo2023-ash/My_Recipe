@@ -37,24 +37,24 @@
 			<div
 				class="border-solid border-radius-5 width-80 margin-0-auto padding-5-5">
 				<h2 class="text-align-center margin-bottom-5 boder-bottom-fff">-
-					ログイン -</h2>
+					ログイン</h2>
 				<form action="" method="post" th:object="${user}"
 					class="text-align-center">
 					<span th:errors="*{userId}"></span>
-					<p class="font-size-2rem  border-none">ユーザーid :</p>
+					<p class="font-size-2rem  border-none">ユーザーid</p>
 					<p>
 						<input type="text" th:field="*{userId}">
 					</p>
 					<span th:errors="*{loginPass}"></span>
 					<p class="font-size-2rem  border-none margin-bottom-5">ログインPass
-						:</p>
+						</p>
 					<p>
 						<input type="password" th:field="*{loginPass}">
 					</p>
 					<input type="submit" class="font-size-2rem border-none">
 				</form>
 				<p class="text-align-center font-size-1-5rem margin-top-5">
-					新規登録は <a th:href="@{register}" class="font-size-1-5rem">コチラ</a>
+					新規登録は <a th:href="@{register}" class="font-size-1-5rem"><br>コチラ</a>
 				</p>
 				<p class="text-align-center margin-top-5">※「管理操作画面」は<br>「管理人」よりログイン！</p>
 			</div>
@@ -62,7 +62,7 @@
 		<main class="main-home">
 			<div class="">
 				<div class="recipes-list margin-0-auto">
-					<h2 class="padding-bottom-5"><a th:href="@{/loginAdmin}">管理人</a>のレシピ</h2>
+					<h2 class="padding-bottom-2"><a th:href="@{/loginAdmin}">管理人</a>のレシピ</h2>
 					<ul>
 						<li th:each="admin : ${admins}"><span>登録日：</span><span
 							th:text="${admin.createdAt}"></span><a

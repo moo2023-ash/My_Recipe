@@ -2,18 +2,18 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="UTF-8" />
-<title>Document</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 
 <body>
 	<header>
 		<div class="header-images flex-start">
-			<span >管理人:</span> 
-			<span th:text="${session.adminId}"	class=""></span>
+			<span>管理人:</span>
+			<span th:text="${session.adminId}" class=""></span>
 		</div>
 	</header>
 	<div class="flex-around ">
@@ -22,23 +22,24 @@
 
 				<ul class="nav-home-link">
 					<li class="padding-bottom-10  text-align-center"><a class="nav-home-a"
-						th:href="@{/admin/home}">Topへ戻る</a></li>
-					<li
-						class="nav-home-li padding-bottom-10 list-style-type-none text-align-center">
+							th:href="@{/admin/home}">Topへ戻る</a></li>
+					<li class="nav-home-li padding-bottom-10 list-style-type-none text-align-center">
 						<a class="nav-home-a" th:href="@{/logout}">ログアウト</a>
 					</li>
-					<li
-						class="nav-home-li padding-bottom-10 list-style-type-none text-align-center">
+					<li class="nav-home-li padding-bottom-10 list-style-type-none text-align-center">
 						<a class="nav-home-a" th:href="@{/admin/register}">レシピ登録</a>
 					</li>
-					<li
-						class="nav-home-li padding-bottom-10 list-style-type-none text-align-center">
+					<li class="nav-home-li padding-bottom-10 list-style-type-none text-align-center">
 						<a class="nav-home-a" th:href="@{/sendMail/answer}">お問い合わせ</a>
 					</li>
 				</ul>
-				<form action="/admin/unSoftDeleteUserByuserId">
-					<input type="text" name="userId" placeholder="誰を？">
-					<input type="submit" value="ユーザー復活の儀">
+				<form action="/admin/unSoftDeleteUserByuserId" class="revival-user">
+					<div class="form-group">
+						<input type="text" name="userId" placeholder="誰を？">
+					</div>
+					<div class="form-group">
+						<input type="submit" value="ユーザー復活">
+					</div>
 				</form>
 				<th:block th:if="${statusMessage}">
 					<p class="statusMessage" th:text="${statusMessage}"></p>
@@ -49,7 +50,7 @@
 		<main class="main-home" style="width: 80%;">
 			<div class="">
 				<div class="recipes-list">
-					<div class="text-align-center padding-bottom-5">
+					<div class="text-align-center padding-bottom-2">
 						<p>
 							<span class="title-name">ユーザーの一覧</span>
 						</p>
@@ -59,13 +60,12 @@
 					</div>
 					<ul>
 						<li th:each="user : ${selectAllUser}" class=""><span>登録日：</span><span
-							th:text="${user.createdAt}"></span> <a
-							th:href="@{/admin/selectByUserId/{userId}(userId=${user.userId})}"
-							class="font-size-2-5rem">[[${user.userId}]]</a> <a
-							th:href="@{/admin/softDeleteUserById/{id}(id=${user.id})}"
-							class="font-size-0-5rem">削除 </a> <a
-							th:href="@{/admin/updateUser/{id}(id=${user.id})}"
-							class="font-size-0-5rem">Pass編集 </a></li>
+								th:text="${user.createdAt}"></span> <a
+								th:href="@{/admin/selectByUserId/{userId}(userId=${user.userId})}"
+								class="font-size-2-5rem">[[${user.userId}]]</a> <a
+								th:href="@{/admin/softDeleteUserById/{id}(id=${user.id})}" class="font-size-0-5rem">削除
+							</a> <a th:href="@{/admin/updateUser/{id}(id=${user.id})}" class="font-size-0-5rem">Pass編集
+							</a></li>
 
 					</ul>
 				</div>
@@ -81,26 +81,24 @@
 		<ul class="pagination">
 			<!-- 前のページへ -->
 			<th:block th:switch="${page}">
-				<li th:case="1" class="page-item disabled"><span
-					class="page-link">&laquo;</span></li>
+				<li th:case="1" class="page-item disabled"><span class="page-link">&laquo;</span></li>
 				<li th:case="*" class="page-item"><a class="page-link"
-					th:href="@{/recipe/home(page=${page - 1})}">&laquo;</a></li>
+						th:href="@{/recipe/home(page=${page - 1})}">&laquo;</a></li>
 			</th:block>
 			<!-- ページ番号 -->
 			<th:block th:each="index : ${#numbers.sequence(1, totalPages)}">
 				<th:block th:switch="${index}">
-					<li th:case="${page}" class="page-item active"><span
-						class="page-link" th:text="${index}"></span></li>
-					<li th:case="*" class="page-item"><a class="page-link"
-						th:href="@{/recipe/home(page=${index})}" th:text="${index}"></a></li>
+					<li th:case="${page}" class="page-item active"><span class="page-link" th:text="${index}"></span>
+					</li>
+					<li th:case="*" class="page-item"><a class="page-link" th:href="@{/recipe/home(page=${index})}"
+							th:text="${index}"></a></li>
 				</th:block>
 			</th:block>
 			<!-- 次のページへ -->
 			<th:block th:switch="${page}">
-				<li th:case="${totalPages}" class="page-item disabled"><span
-					class="page-link">&raquo;</span></li>
+				<li th:case="${totalPages}" class="page-item disabled"><span class="page-link">&raquo;</span></li>
 				<li th:case="*" class="page-item"><a class="page-link"
-					th:href="@{/recipe/home(page=${page + 1})}">&raquo;</a></li>
+						th:href="@{/recipe/home(page=${page + 1})}">&raquo;</a></li>
 			</th:block>
 		</ul>
 	</div>

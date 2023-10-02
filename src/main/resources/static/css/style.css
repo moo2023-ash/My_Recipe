@@ -83,6 +83,10 @@ body {
 	padding-bottom: 5%;
 }
 
+.padding-bottom-5 {
+	padding-bottom: 5%;
+}
+
 .padding-bottom-10 {
 	padding-bottom: 10%;
 }
@@ -146,16 +150,17 @@ body {
 .display-none-textarea {
 	display: none;
 }
+
 /*---------------------個別設定---------------------*/
 .parent-container {
 	/* 	position: relative; */
-	
+
 }
 
 header {
 	padding-top: 1%;
-/* 	padding-bottom: 2%; */
-/* 	margin-bottom: 5%; */
+	/* 	padding-bottom: 2%; */
+	/* 	margin-bottom: 5%; */
 	z-index: 1;
 }
 
@@ -168,14 +173,15 @@ header span {
 	z-index: 100;
 }
 
-.nav-home-left, .nav-detail-left {
+.nav-home-left,
+.nav-detail-left {
 	background-color: #e6ecfe;
 	z-index: 90;
 }
 
 .nav-home-left {
 	position: absolute;
-	top: 10%;
+	top: 12%;
 	left: 0;
 	height: 90%;
 	width: 15%;
@@ -188,18 +194,26 @@ header span {
 }
 
 #likeButton {
-	background-color: #007BFF; /* ボタンの背景色 */
-	color: white; /* ボタンのテキスト色 */
-	border: none; /* ボーダーを削除 */
-	padding: 10px 20px; /* パディングを追加 */
-	cursor: pointer; /* カーソルをポインターに変更 */
+	background-color: #007BFF;
+	/* ボタンの背景色 */
+	color: white;
+	/* ボタンのテキスト色 */
+	border: none;
+	/* ボーダーを削除 */
+	padding: 10px 20px;
+	/* パディングを追加 */
+	cursor: pointer;
+	/* カーソルをポインターに変更 */
 }
 
 /* カウントのスタイル */
 #likeCount {
-	font-size: 16px; /* フォントサイズ */
-	color: #333; /* テキストの色 */
-	margin-left: 10px; /* 左の余白を追加 */
+	font-size: 16px;
+	/* フォントサイズ */
+	color: #333;
+	/* テキストの色 */
+	margin-left: 10px;
+	/* 左の余白を追加 */
 }
 
 .title-images {
@@ -240,7 +254,8 @@ header span {
 	margin: 0;
 }
 
-.nav-rogin-home-link, .nav-home-link {
+.nav-rogin-home-link,
+.nav-home-link {
 	padding: 10% 0%;
 }
 
@@ -253,7 +268,11 @@ header span {
 	font-size: 2rem;
 }
 
-.like-count-
+.like-count-header {
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 15%;
+}
 
 .like-count {
 	margin: 0 auto;
@@ -262,19 +281,22 @@ header span {
 	display: flex;
 	justify-content: center;
 	display: inline-block;
-    padding: 10px 20px;
-    background-color: #007BFF; /* ボタンの背景色 */
-    color: #fff; /* ボタンのテキスト色 */
-    border: none;
-    border-radius: 5px; /* ボタンの角丸 */
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-} 
+	padding: 10px 20px;
+	background-color: #007BFF;
+	/* ボタンの背景色 */
+	color: #fff;
+	/* ボタンのテキスト色 */
+	border: none;
+	border-radius: 5px;
+	/* ボタンの角丸 */
+	cursor: pointer;
+	text-decoration: none;
+	font-size: 16px;
+	transition: background-color 0.3s ease;
+}
 
 .like-button:hover {
-    background-color: #0056b3; 
+	background-color: #0056b3;
 }
 
 .main-home {
@@ -312,11 +334,9 @@ header span {
 	/* 		z-index: 1; */
 }
 
-.ingredients-amounts {
+.ingredients-amounts {}
 
-}
-
-.ingredients-amounts-section .session-name-block {
+.ingredients-amounts-section, .session-name-block {
 	display: inline-block;
 	background-color: #fff;
 	border-radius: 10%;
@@ -324,22 +344,34 @@ header span {
 	margin-right: 20px;
 }
 
-.recipes-list, .detail-title {
+.ingredients-amounts-section {
+	width: 60%;
+}
+
+.ingredients-detail{
+	width: 40%;
+}
+
+.recipes-list,
+.detail-title {
 	margin: 0 auto;
 }
 
-.recipes-list ul, .detail-title ul {
+.recipes-list ul,
+.detail-title ul {
 	list-style: none;
 	text-align: center;
 }
 
-.recipes-list li, .detail-title li {
-	padding-top: 3%;
+.recipes-list li,
+.detail-title li {
+	padding-top: 1.5%;
 	padding-left: 5%;
 	text-align: left;
 }
 
-.recipes-list a, .detail-title a {
+.recipes-list a,
+.detail-title a {
 	text-decoration: none;
 	border-bottom: 1rem;
 	color: #000;
@@ -354,25 +386,30 @@ header span {
 	background-color: rgb(255, 224, 238);
 }
 
-.recipes-list h2, .detail-title h2 {
+.recipes-list h2,
+.detail-title h2 {
 	font-size: 3rem;
 }
 
-.recipes-list ul, .detail-title ul {
+.recipes-list ul,
+.detail-title ul {
 	text-align: left;
-	padding: 5% 0 0 5%;
+	padding: 0 0 0 5%;
 }
 
-.recipes-list h2, .detail-title h2 {
+.recipes-list h2,
+.detail-title h2 {
 	text-align: center;
 }
 
-.recipes-list a, .detail-title a {
+.recipes-list a,
+.detail-title a {
 	text-align: center;
 	color: #000;
 }
 
-.recipes-list li, .detail-title li {
+.recipes-list li,
+.detail-title li {
 	color: #000;
 	text-align: left;
 }
@@ -387,21 +424,18 @@ header span {
 	color: rgb(235, 51, 244);
 }
 
-.ingredients-detail {
-	width: 30%;
-}
-
-.ingredients-detail-container h3, .process-detail h3 {
+.ingredients-detail-container h3,
+.process-detail h3 {
 	font-size: 2.5rem;
 	text-align: center;
 	margin-top: 0px;
 }
 
 .ingredients-detail-container dl {
-	font-size: 2rem;
+	font-size: 1.7rem;
 	margin: 0 auto;
-	padding: 3%;
-	background: linear-gradient(transparent 50%, rgb(236, 249, 161) 90%);
+	padding: 1.5% 3% 0.1% 3%;
+	background: linear-gradient(transparent 90%, rgb(248, 183, 157) 95%);
 }
 
 .process-detail {
@@ -410,7 +444,7 @@ header span {
 	/* 	left: 20%; */
 	/* 	bottom: 0; */
 	/* 	margin: 5% 10%; */
-	
+
 }
 
 .process-detail-container {
@@ -419,8 +453,18 @@ header span {
 
 .process-detail-container li {
 	font-size: 2rem;
-	margin-bottom: 5%;
+	margin-bottom: 1%;
 	/* 	background: linear-gradient(transparent 50%, rgb(181, 248, 186) 90%); */
+}
+
+.revival-user {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.form-group {
+  display: block;
+  margin-bottom: 10px; /* 適切な間隔を設定してください */
 }
 
 .pagination {

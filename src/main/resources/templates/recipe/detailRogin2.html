@@ -38,11 +38,11 @@
 					<p class="statusMessage" th:text="${statusMessage}"></p>
 				</th:block>
 			</div>
-			<div class="">
+			<div class="like-count-header ">
 				<div class="like-count">
 					<!-- 				<form action="/like" th:each="likeId : ${recipesDetail}"> -->
 					<!-- 					<input type="hidden" name="id" value="${likeId.id}"> -->
-					<a th:each="likeId : ${recipeRegister}"
+					<a th:each="likeId : ${recipeRegister}" class="like-button:hover"
 						th:href="@{/like/{id}(id=${likeId.id})}">いいね:</a>
 					<!-- 				</form> -->
 					<span th:each="like : ${recipeRegister}"> <span
@@ -56,7 +56,6 @@
 			<section>
 				<div class="">
 					<div class="detail-title">
-						<h2>~ 詳しく見る ~</h2>
 						<ul class="">
 							<li th:each="recipe : ${recipesDetail}"><a class="">[[${recipe.title}]]</a>
 							</li>

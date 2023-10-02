@@ -158,6 +158,25 @@ public class UserLoginController {
 		return "/recipe/detailRogin2";
 	}
 	
+	@GetMapping("/likeAdmin/{id}")
+	public String likeCountAdmin(
+			@PathVariable("id") int id, 
+			Model model, 
+			HttpSession session) throws Exception {
+		
+		RecipeRegister recipeRegister = recipeMapper.selectRegisterById(id);
+		int currentLikeCount = recipeRegister.getLikeCount();
+		int newLikeCount = currentLikeCount + 1;
+		recipeRegister.setLikeCount(newLikeCount);
+		recipeMapper.update(recipeRegister);
+		model.addAttribute("recipeRegister", recipeRegister);
+		
+		List<Recipe> recipesDetail = recipeService.selectByIdByService(id);
+		model.addAttribute("recipesDetail", recipesDetail);
+//		return "redirect:/recipe/home";
+		return "/admin/detail";
+	}
+	
 
 
 }
