@@ -426,7 +426,8 @@ header span {
 
 .ingredients-detail-container h3,
 .process-detail h3 {
-	font-size: 2.5rem;
+	font-size: 2.2rem;
+	color: green;
 	text-align: center;
 	margin-top: 0px;
 }
