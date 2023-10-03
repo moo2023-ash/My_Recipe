@@ -200,7 +200,7 @@ public class AdminController {
 			return "admin/update";
 		}
 
-		recipeRegister.setUserId(((String) session.getAttribute("userId")));
+//		recipeRegister.setUserId(((String) session.getAttribute("userId")));
 		recipeRegister.setId(id);
 		recipeService.updateRecipe(recipeRegister, imageUpfile);
 		rs.addFlashAttribute("statusMessage", "レシピを更新しました。");

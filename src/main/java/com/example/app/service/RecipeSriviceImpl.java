@@ -58,7 +58,7 @@ public class RecipeSriviceImpl implements RecipeService {
 	public void updateRecipe(RecipeRegister recipeRegister, MultipartFile imageUpfile)
 			throws Exception {
 
-		
+		System.out.println(recipeRegister);
 		if (!imageUpfile.isEmpty()) {
 			String photo = imageUpfile.getOriginalFilename();
 			recipeRegister.setPhoto(photo);
