@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.app.domain.Recipe;
 import com.example.app.domain.RecipeRegister;
+import com.example.app.domain.User;
+import com.example.app.domain.validation.LoginGroup;
 import com.example.app.mapper.RecipeMapper;
+import com.example.app.service.LoginService;
 import com.example.app.service.RecipeService;
 
 import jakarta.servlet.http.HttpSession;
@@ -31,6 +35,7 @@ public class RecipeController {
 
 	private final RecipeService recipeService;
 	private final RecipeMapper recipeMapper;
+	private final LoginService loginService;
 
 	@GetMapping("/home")
 	public String showList(
@@ -162,5 +167,39 @@ public class RecipeController {
 		List<Recipe> recipesDetail = recipeService.selectByIdByService(id);
 		model.addAttribute("recipesDetail", recipesDetail);
 		return "/recipe/detailRogin2";
+	}
+	
+	@GetMapping("/searchRcipes")
+	public String searchRcipes(
+			@RequestParam(name = "page", defaultValue = "1") Integer page,
+			@RequestParam("keyword") String keyword,
+			Model model) throws Exception {
+		
+		model.addAttribute("user", new User());
+		
+		model.addAttribute("admins", recipeService.getRecipeListByPage(page,10, "admin"));
+		
+		model.addAttribute("searchRcipes",recipeMapper.searchRecipe(keyword));
+		model.addAttribute("page", page);
+		model.addAttribute("totalPages", recipeService.getTotalPages(10, "admin"));
+		return "recipe/home";
+	}
+	
+	@PostMapping("/searchRcipes")
+	public String searchRcipes(
+			@Validated(LoginGroup.class) User user,
+			Errors errors,
+			Model model,
+			HttpSession session) {
+		if (errors.hasErrors()) {
+			return "/recipe/home";
+		}
+		if (!loginService.isCorrectIdAndPassword(user.getUserId(), user.getLoginPass())) {
+			return "/recipe/loginHome";
+		}
+		
+		session.setAttribute("userId", user.getUserId());
+
+		return "redirect:/recipe/home";
 	}
 }

@@ -32,7 +32,7 @@
 					</li>
 					<li th:each="recipe : ${recipesDetail}" class=""><a
 						class="nav-home-a nav-rogin-a"
-						href="@{/sendMail/ingredient/{id}(id=${navId.id})}">材料Mail送信</a></li>
+						th:href="@{/sendMail/ingredient/{id}(id=${recipe.id})}">材料Mail送信</a></li>
 				</ul>
 				<th:block th:if="${statusMessage}">
 					<p class="statusMessage" th:text="${statusMessage}"></p>

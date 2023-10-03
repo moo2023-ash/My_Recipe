@@ -171,6 +171,7 @@ public class AdminController {
 			@PathVariable("id") int id,
 			Model model) {
 		RecipeRegister recipeRegister = recipeMapper.selectRegisterById(id);
+	
 		model.addAttribute("recipeRegister", recipeRegister);
 		return "admin/update";
 	}
@@ -255,6 +256,8 @@ public class AdminController {
 		
 		List<Recipe> recipesDetail = recipeService.selectByIdByService(id);
 		model.addAttribute("recipesDetail", recipesDetail);
+		
+		
 		return "admin/detail";
 	}
 }

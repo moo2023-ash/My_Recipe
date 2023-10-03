@@ -25,6 +25,9 @@
 			<div>
 				<form class="flex-around" method="post" enctype="multipart/form-data" th:object="${recipeRegister}">
 					<div>
+					
+						<h3>ユーザーId</h3>
+						<input type="text" th:field="*{userId}">
 						<h3>（1）料理名</h3>
 						<p th:errors="*{title}"></p>
 						<input type="text" th:field="*{title}">

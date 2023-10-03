@@ -75,4 +75,29 @@ public class SendMailController {
         }
         return "sendIngredientMailForm"; 
     }
+    
+    @GetMapping("/ingredient2/{id}")
+    public String sendIngredientMailForm2() {
+    	return "/admin/sendIngredientMailForm"; 
+    }
+    
+    @PostMapping("/ingredient2/{id}")
+    public String sendMail2(
+    		@RequestParam("email") String email,
+    		@PathVariable("id") int id,
+    		Model model
+    		) {
+    	RecipeRegister recipeRegister = recipeMapper.selectRegisterById(id);
+    	String emailBody = mailService.buildEmailBody(recipeRegister);		
+    	String title = "材料一覧";
+    	String message = emailBody;
+    	
+    	try {
+    		mailService.sendIngredient(email, title, message);
+    		model.addAttribute("msg", "材料メール送信完了しました。");
+    	} catch (Exception e) {
+    		model.addAttribute("msg", "申し訳ございません。送信に失敗しました。");
+    	}
+    	return "/admin/sendIngredientMailForm"; 
+    }
 }

@@ -31,39 +31,7 @@ public class UserLoginController {
 	private final RecipeService recipeService;
 
 	
-	@GetMapping("/searchRcipes")
-	public String searchRcipes(
-			@RequestParam(name = "page", defaultValue = "1") Integer page,
-			@RequestParam("keyword") String keyword,
-			Model model) throws Exception {
-		
-		model.addAttribute("user", new User());
-		
-		model.addAttribute("admins", recipeService.getRecipeListByPage(page,10, "admin"));
-		
-		model.addAttribute("searchRcipes",recipeMapper.searchRecipe(keyword));
-		model.addAttribute("page", page);
-		model.addAttribute("totalPages", recipeService.getTotalPages(10, "admin"));
-		return "loginHome";
-	}
 	
-	@PostMapping("/searchRcipes")
-	public String searchRcipes(
-			@Validated(LoginGroup.class) User user,
-			Errors errors,
-			Model model,
-			HttpSession session) {
-		if (errors.hasErrors()) {
-			return "loginHome";
-		}
-		if (!service.isCorrectIdAndPassword(user.getUserId(), user.getLoginPass())) {
-			return "loginHome";
-		}
-		
-		session.setAttribute("userId", user.getUserId());
-
-		return "redirect:/recipe/home";
-	}
 	
 	@GetMapping
 	public String showHome(

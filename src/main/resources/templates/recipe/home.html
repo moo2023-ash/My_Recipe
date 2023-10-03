@@ -65,7 +65,7 @@
 		<nav class="nav-home-right text-align-center">
 			<h3 class="text-align-center padding-bottom-10">みんなのレシピ</h3>
 			
-			<form action="/searchRcipes">
+			<form action="/recipe/searchRcipes">
 				<input type="text" placeholder="キーワードを入力" class="text-align-center"
 					style="text-align: center;" name="keyword"> 
 				<input type="submit" value="探す">
@@ -74,7 +74,7 @@
 			<ul th:if="${selectAllrecipes}" th:each="recipe : ${selectAllrecipes}" class="nav-home-right-ul">
 				<li class="nav-home-right-li"><span>登録日：</span>
 				<span th:text="${recipe.createdAt}"></span><a
-					th:href="@{/detailRogin2/{id}(id=${recipe.id})}"
+					th:href="@{/recipe/detailRogin2/{id}(id=${recipe.id})}"
 					class="nav-home-righ-a font-size-1-5rem">[[${recipe.title}]]</a></li>
 			</ul>
 			
@@ -82,7 +82,7 @@
 				<li class="nav-home-right-li">
 				<span>登録日：</span>
 				<span th:text="${recipe.createdAt}"></span>
-				<a th:href="@{/detailRogin2/{id}(id=${recipe.id})}"
+				<a th:href="@{/recipe/detailRogin2/{id}(id=${recipe.id})}"
 					class="nav-home-righ-a font-size-1-5rem">[[${recipe.title}]]</a></li>
 			</ul>
 			
