@@ -89,9 +89,12 @@ public class UserLoginController {
 			Model model,
 			HttpSession session) {
 		if (errors.hasErrors()) {
+			System.out.println(1111);
 			return "loginHome";
 		}
 		if (!service.isCorrectIdAndPassword(user.getUserId(), user.getLoginPass())) {
+			errors.reject("wrong.id.pass");
+
 			return "loginHome";
 		}
 		

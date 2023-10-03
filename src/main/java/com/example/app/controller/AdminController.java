@@ -138,9 +138,9 @@ public class AdminController {
 	@PostMapping("/register")
 	public String add(
 			@Valid RecipeRegister recipeRegister,
+			Errors errors,
 			MultipartFile imageUpfile,
 			Model model,
-			Errors errors,
 			RedirectAttributes rs,
 			HttpSession session) {
 		
@@ -179,9 +179,9 @@ public class AdminController {
 	public String updateRecipe(
 			@PathVariable("id") int id,
 			@Valid RecipeRegister recipeRegister,
+			Errors errors,
 			MultipartFile imageUpfile,
 			Model model,
-			Errors errors,
 			RedirectAttributes rs,
 			HttpSession session) throws Exception {
 		

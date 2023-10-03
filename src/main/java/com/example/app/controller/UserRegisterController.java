@@ -34,9 +34,7 @@ public class UserRegisterController {
 		if(errors.hasErrors()) {
 			return "registerHome";
 		}
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-		System.out.println("register" + user);
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+	
 		service.register(user);
 		session.setAttribute("userId", user.getUserId());
 		return "redirect:/recipe/home";

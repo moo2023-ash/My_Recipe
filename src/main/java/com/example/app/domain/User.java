@@ -2,6 +2,8 @@ package com.example.app.domain;
 
 import java.sql.Date;
 
+import com.example.app.domain.validation.LoginGroup;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -14,11 +16,11 @@ public class User {
    
     
     @NotBlank
-    @Size(max = 20)
+    @Size(min=1, max = 20, groups = {LoginGroup.class})
     private String userId;
     
     @NotBlank
-    @Size(max = 1000)
+    @Size(min=1, max = 1000)
     private String loginPass;
     
     private String status;

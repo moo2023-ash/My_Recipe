@@ -14,32 +14,34 @@ import com.example.app.filter.AuthFilter;
 
 @Configuration
 public class ApplicationConfig implements WebMvcConfigurer {
-	
+
 	@Override
 	public Validator getValidator() {
-	var validator = new LocalValidatorFactoryBean();
-	validator.setValidationMessageSource(messageSource());
-	return validator;
+		var validator = new LocalValidatorFactoryBean();
+		validator.setValidationMessageSource(messageSource());
+		return validator;
 	}
+
 	@Bean
 	MessageSource messageSource() {
-	var messageSource = new ResourceBundleMessageSource();
-	messageSource.setBasename("validation");
-	return messageSource;
+		var messageSource = new ResourceBundleMessageSource();
+		messageSource.setBasename("validation");
+		return messageSource;
 	}
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/uploads/**")
-		.addResourceLocations("file:///Users/mukawachirei/Pictures/uploads/");
+//		.addResourceLocations("file:///Users/mukawachirei/Pictures/uploads/");
 //		.addResourceLocations("file:///C:/Users/zd2N09/uploads/");
+		.addResourceLocations("file:/home/trainee/uploads/");
 	}
 
 	@Bean
-	 FilterRegistrationBean<AuthFilter> authFilter() {
-	 var bean =
-	new FilterRegistrationBean<AuthFilter>(new AuthFilter());
-	 bean.addUrlPatterns("/recipe/*", "/admin/*");
+	FilterRegistrationBean<AuthFilter> authFilter() {
+		var bean = new FilterRegistrationBean<AuthFilter>(new AuthFilter());
+		bean.addUrlPatterns("/recipe/*", "/admin/*");
 
-	 return bean;
-	 } 
+		return bean;
+	}
 }

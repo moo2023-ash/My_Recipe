@@ -36,6 +36,7 @@ public class AdminRoginController {
 			HttpSession session) {
 
 		if (!adminLoginService.isCorrectIdAndPasswordByAdmin(admin.getAdminId(), admin.getLoginPass())) {
+			errors.reject("wrong.id.pass");
 			return "loginAdmin";
 		}
 

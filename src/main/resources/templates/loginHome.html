@@ -40,29 +40,40 @@
 					ログイン</h2>
 				<form action="" method="post" th:object="${user}"
 					class="text-align-center">
-					<span th:errors="*{userId}"></span>
+
+
+					<p th:errors="*{userId}"></p>
 					<p class="font-size-2rem  border-none">ユーザーid</p>
 					<p>
 						<input type="text" th:field="*{userId}">
 					</p>
 					<span th:errors="*{loginPass}"></span>
 					<p class="font-size-2rem  border-none margin-bottom-5">ログインPass
-						</p>
+					</p>
 					<p>
 						<input type="password" th:field="*{loginPass}">
 					</p>
+					<div th:if="${#fields.hasGlobalErrors()}">
+						<p th:each="e : ${#fields.globalErrors()}" th:text="${e}"></p>
+					</div>
+					
+					
 					<input type="submit" class="font-size-2rem border-none">
 				</form>
 				<p class="text-align-center font-size-1-5rem margin-top-5">
 					新規登録は <a th:href="@{register}" class="font-size-1-5rem"><br>コチラ</a>
 				</p>
-				<p class="text-align-center margin-top-5">※「管理操作画面」は<br>「管理人」よりログイン！</p>
+				<p class="text-align-center margin-top-5">
+					※「管理操作画面」は<br>「管理人」よりログイン！
+				</p>
 			</div>
 		</nav>
 		<main class="main-home">
 			<div class="">
 				<div class="recipes-list margin-0-auto">
-					<h2 class="padding-bottom-2"><a th:href="@{/loginAdmin}">管理人</a>のレシピ</h2>
+					<h2 class="padding-bottom-2">
+						<a th:href="@{/loginAdmin}">管理人</a>のレシピ
+					</h2>
 					<ul>
 						<li th:each="admin : ${admins}"><span>登録日：</span><span
 							th:text="${admin.createdAt}"></span><a
@@ -75,23 +86,23 @@
 		</main>
 		<nav class="nav-home-right text-align-center opacity-3">
 			<h3 class="text-align-center padding-bottom-10">みんなのレシピ</h3>
-			
-			
+
+
 			<form action="/searchRcipes">
 				<input type="text" placeholder="キーワードを入力" class="text-align-center"
-					style="text-align: center;" name="keyword" disabled> 
-				<input type="submit" value="探す" disabled>
+					style="text-align: center;" name="keyword" disabled> <input
+					type="submit" value="探す" disabled>
 			</form>
-			<ul th:if="${selectAllrecipes}" th:each="recipe : ${selectAllrecipes}" class="nav-home-right-ul">
+			<ul th:if="${selectAllrecipes}"
+				th:each="recipe : ${selectAllrecipes}" class="nav-home-right-ul">
 				<li class="nav-home-right-li"><span>登録日：</span><span
-							th:text="${recipe.createdAt}"></span><a
-					href=""
+					th:text="${recipe.createdAt}"></span><a href=""
 					class="nav-home-righ-a font-size-1-5rem">[[${recipe.title}]]</a></li>
 			</ul>
-			
-			<ul th:if="${searchRcipes}" th:each="recipe : ${searchRcipes}" class="nav-home-right-ul">
-				<li class="nav-home-right-li"><a
-					href=""
+
+			<ul th:if="${searchRcipes}" th:each="recipe : ${searchRcipes}"
+				class="nav-home-right-ul">
+				<li class="nav-home-right-li"><a href=""
 					class="nav-home-righ-a font-size-1-5rem">[[${recipe.title}]]</a></li>
 			</ul>
 		</nav>

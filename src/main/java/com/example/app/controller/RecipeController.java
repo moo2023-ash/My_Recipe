@@ -80,26 +80,24 @@ public class RecipeController {
 	@PostMapping("/register")
 	public String add(
 			@Valid RecipeRegister recipeRegister,
+			Errors errors,
 			MultipartFile imageUpfile,
 			Model model,
-			Errors errors,
 			RedirectAttributes rs,
 			HttpSession session) {
-		
-		System.out.println("recipeRegister : "+ recipeRegister);
 
-		if (recipeRegister == null) {
-			return "recipe/register";
-		}
-		if (!imageUpfile.isEmpty()) {
-			String type = imageUpfile.getContentType();
-			if (!type.startsWith("image/")) {
-				errors.rejectValue("upfile", "error.not_image_file");
-			}
-		}
+//		if (recipeRegister == null) {
+//			return "recipe/register";
+//		}
+//		if (!imageUpfile.isEmpty()) {
+//			String type = imageUpfile.getContentType();
+//			if (!type.startsWith("image/")) {
+//				errors.rejectValue("upfile", "error.not_image_file");
+//			}
+//		}
 
 		if (errors.hasErrors()) {
-			return "recipe/register";
+			return "register";
 		}
 
 		recipeRegister.setUserId((String) session.getAttribute("userId"));
@@ -121,9 +119,9 @@ public class RecipeController {
 	public String updateRecipe(
 			@PathVariable("id") int id,
 			@Valid RecipeRegister recipeRegister,
+			Errors errors,
 			MultipartFile imageUpfile,
 			Model model,
-			Errors errors,
 			RedirectAttributes rs,
 			HttpSession session) throws Exception {
 		

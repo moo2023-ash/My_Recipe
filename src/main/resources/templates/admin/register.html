@@ -26,6 +26,7 @@
 				<form class="flex-around" method="post" enctype="multipart/form-data" th:object="${recipeRegister}">
 					<div>
 						<h3>（1）料理名</h3>
+						<p th:errors="*{title}"></p>
 						<input type="text" th:field="*{title}">
 						<h3>（2）画像アップロード</h3>
 							<p><input type="file" name="imageUpfile"></p>

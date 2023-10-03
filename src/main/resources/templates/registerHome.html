@@ -9,7 +9,7 @@
 		<form action="" method="post">
 			
 			
-		
+		<p th:errors="${user.userId}"></p>
 		<p>ユーザーId<input type="text" th:field="${user.userId}"></p>
 		
 		<p>ログインPass<input type="password" th:field="${user.loginPass}"></p>
