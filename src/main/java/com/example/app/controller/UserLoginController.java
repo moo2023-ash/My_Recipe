@@ -87,7 +87,7 @@ public class UserLoginController {
 		model.addAttribute("image", recipeRegister);
 		List<Recipe> recipesDetail = recipeService.selectByIdByService(id);
 		model.addAttribute("recipesDetail", recipesDetail);
-		return "/recipe/detailRogin";
+		return "recipe/detailRogin";
 	}
 	
 	
@@ -107,7 +107,7 @@ public class UserLoginController {
 		
 		List<Recipe> recipesDetail = recipeService.selectByIdByService(id);
 		model.addAttribute("recipesDetail", recipesDetail);
-		return "/recipe/detailRogin2";
+		return "recipe/detailRogin2";
 	}
 	
 	@GetMapping("/like/{id}")
@@ -126,7 +126,7 @@ public class UserLoginController {
 		List<Recipe> recipesDetail = recipeService.selectByIdByService(id);
 		model.addAttribute("recipesDetail", recipesDetail);
 //		return "redirect:/recipe/home";
-		return "/recipe/detailRogin2";
+		return "recipe/detailRogin2";
 	}
 	
 	@GetMapping("/likeAdmin/{id}")
@@ -145,7 +145,7 @@ public class UserLoginController {
 		List<Recipe> recipesDetail = recipeService.selectByIdByService(id);
 		model.addAttribute("recipesDetail", recipesDetail);
 //		return "redirect:/recipe/home";
-		return "/admin/detail";
+		return "admin/detail";
 	}
 	
 

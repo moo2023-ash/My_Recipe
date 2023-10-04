@@ -26,7 +26,7 @@ public class RecipeSriviceImpl implements RecipeService {
 			String photo = imageUpfile.getOriginalFilename();
 			recipeRegister.setPhoto(photo);
 			//		 File dest = new File("file:///Users/mukawachirei/Pictures/uploads/" + photo);
-			File dest = new File("C:/Users/zd2N09/uploads/" + photo);
+			File dest = new File("/home/trainee/uploads/" + photo);
 			try {
 				imageUpfile.transferTo(dest);
 			} catch (IllegalStateException | IOException e) {
@@ -63,7 +63,8 @@ public class RecipeSriviceImpl implements RecipeService {
 			String photo = imageUpfile.getOriginalFilename();
 			recipeRegister.setPhoto(photo);
 			//		 File dest = new File("file:///Users/mukawachirei/Pictures/uploads/" + photo);
-			File dest = new File("C:/Users/zd2N09/uploads/" + photo);
+//			File dest = new File("C:/Users/zd2N09/uploads/" + photo);
+			File dest = new File("/home/trainee/uploads/" + photo);
 			try {
 				imageUpfile.transferTo(dest);
 			} catch (IllegalStateException | IOException e) {

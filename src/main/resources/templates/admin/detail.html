@@ -32,7 +32,7 @@
 						class="nav-home-a">更新</a>
 					</li>
 					<li th:each="recipe : ${recipesDetail}"><a class="nav-home-a"
-						th:href="@{/sendMail/ingredient2/{id}(id=${recipe.id})}">材料Mail送信</a>
+						th:href="@{/sendMail/ingredient3/{id}(id=${recipe.id})}">材料Mail送信</a>
 					</li>
 				</ul>
 				<div class="like-count-header ">
@@ -69,7 +69,7 @@
 				<section class="ingredients-amounts-section"
 					th:each="recipe : ${recipesDetail}">
 					<img th:src="@{/uploads/{img}(img=${recipe.photo})}"
-						alt="${recipe.photo}" width="90%" height="">
+						alt="${recipe.photo}" width="60%" height="">
 
 				</section>
 

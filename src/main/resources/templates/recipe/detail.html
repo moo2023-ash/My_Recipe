@@ -59,7 +59,7 @@
 				<section class="ingredients-amounts-section"
 					th:each="recipe : ${recipesDetail}">
 					<img th:src="@{/uploads/{img}(img=${recipe.photo})}"
-						alt="${recipe.photo}" width="90%" height="">
+						alt="${recipe.photo}" width="60%" height="">
 					<!-- 				<section class="ingredients-amounts-section" th:each="recipe : ${recipesDetail}"> -->
 					<!--  						<img th:src="@{/uploads/{img}(img=${recipe.photo})}" alt="${recipe.photo}" width="400" height="400"> -->
 
@@ -72,7 +72,7 @@
 				<section class="ingredients-detail">
 					<div class="ingredients-detail-container">
 						<h3>材料</h3>
-						<dl class="flex-between">
+						<dl class="flex-">
 							<dt
 								th:if="${recipesDetail[0].ingredients[0]['ingredient1'] != null and recipesDetail[0].ingredients[0]['ingredient1'] != ''}"
 								th:text="${recipesDetail[0].ingredients[0]['ingredient1']}"></dt>

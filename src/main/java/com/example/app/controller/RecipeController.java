@@ -166,7 +166,7 @@ public class RecipeController {
 		
 		List<Recipe> recipesDetail = recipeService.selectByIdByService(id);
 		model.addAttribute("recipesDetail", recipesDetail);
-		return "/recipe/detailRogin2";
+		return "recipe/detailRogin2";
 	}
 	
 	@GetMapping("/searchRcipes")
@@ -192,10 +192,10 @@ public class RecipeController {
 			Model model,
 			HttpSession session) {
 		if (errors.hasErrors()) {
-			return "/recipe/home";
+			return "recipe/home";
 		}
 		if (!loginService.isCorrectIdAndPassword(user.getUserId(), user.getLoginPass())) {
-			return "/recipe/loginHome";
+			return "recipe/loginHome";
 		}
 		
 		session.setAttribute("userId", user.getUserId());
